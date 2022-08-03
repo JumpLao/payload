@@ -230,8 +230,12 @@ const Relationship = (props) => {
         });
         if (!equal(newOptionFilters, optionFilters)) {
             setOptionFilters(newOptionFilters);
+            dispatchOptions({
+                type: 'CLEAR',
+                required,
+            });
         }
-    }, [relationTo, filterOptions, optionFilters, id, data, siblingData, path, user]);
+    }, [relationTo, filterOptions, optionFilters, id, data, siblingData, path, user, required]);
     useEffect(() => {
         if (optionFilters || !filterOptions) {
             setHasLoadedValueOptions(false);
