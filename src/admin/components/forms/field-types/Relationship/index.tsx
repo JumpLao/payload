@@ -296,8 +296,8 @@ const Relationship: React.FC<Props> = (props) => {
     }
   }, [hasMany, hasMultipleRelations, relationTo, initialValue, hasLoadedValueOptions, errorLoading, collections, api, serverURL]);
 
-  const data = getData()
-  const siblingData = getSiblingData(path)
+  const data = getData();
+  const siblingData = getSiblingData(path);
   useEffect(() => {
     if (!filterOptions) {
       return;
@@ -311,8 +311,12 @@ const Relationship: React.FC<Props> = (props) => {
     });
     if (!equal(newOptionFilters, optionFilters)) {
       setOptionFilters(newOptionFilters);
+      dispatchOptions({
+        type: 'CLEAR',
+        required,
+      });
     }
-  }, [relationTo, filterOptions, optionFilters, id, data, siblingData, path, user]);
+  }, [relationTo, filterOptions, optionFilters, id, data, siblingData, path, user, required]);
 
   useEffect(() => {
     if (optionFilters || !filterOptions) {
